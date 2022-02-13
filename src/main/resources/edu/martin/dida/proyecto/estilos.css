@@ -1,0 +1,41 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 31 ene. 2022, 20:02:25
+    Author     : Markyuu
+*/
+
+
+.fondo{
+        -fx-background-color: #ffffff;
+
+}
+.login_txt{
+    -fx-background-color: transparent;
+    -fx-border-color: #000000;
+    -fx-border-width: 0px 0px 1px 0px
+}
+
+.button4 {
+  -fx-background-color: white;
+}
+
+.button4:hover {-fx-background-color: #e7e7e7;}
+
+.combo-box {
+    -fx-background-color: transparent;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #000000;
+
+
+}
+.combo-box:hover  {
+    -fx-background-color: transparent, #6699FF, transparent, transparent, white;
+}
+
+
+
+
+
