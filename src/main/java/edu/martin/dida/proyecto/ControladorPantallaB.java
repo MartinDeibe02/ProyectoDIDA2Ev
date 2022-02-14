@@ -10,6 +10,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -17,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Slider;
@@ -55,12 +57,17 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
         TableView<Jugadores> tablabd;
         private int id;
         
+        @FXML
+        PieChart pie;
+        
         JugadorDAO jugadorDao;
+        
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         jugadorDao = new JugadorDAO();
         cargar();      
+        cargarGrafico();
         
         altura0.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
@@ -79,6 +86,22 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
             
         });    
         
+    }
+    
+    public void volver(){
+        this.layout.mostrarPantallaActual("a");
+    }
+    
+    public void cargarGrafico(){
+        Map<String, Integer> jugadoresEquipo = jugadorDao.contarJugadoresEquipos();
+        
+        ObservableList<PieChart.Data> datos = FXCollections.observableArrayList();
+        
+        jugadoresEquipo.forEach((nombrejugador,cantidad) ->{
+            PieChart.Data data = new PieChart.Data(nombrejugador,cantidad);
+            datos.add(data);
+        });
+        pie.setData(datos);
     }
     
        public void guardar(){

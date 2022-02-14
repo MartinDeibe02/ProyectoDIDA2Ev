@@ -25,11 +25,11 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="1000.0" styleClass="table-view" stylesheets="@../edu.martin.dida.navegabilidadfxml/estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.martin.dida.proyecto.ControladorPantallaB">
+<BorderPane prefHeight="600.0" prefWidth="1000.0" styleClass="table-view" stylesheets="@../edu.martin.dida.proyecto/estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.martin.dida.proyecto.ControladorPantallaB">
    <right>
       <StackPane prefHeight="570.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <children>
-            <PieChart legendSide="LEFT" title="Jugadores-Equipos" />
+            <PieChart fx:id="pie" legendSide="LEFT" title="Jugadores-Equipos" />
          </children>
       </StackPane>
    </right>
@@ -38,12 +38,12 @@
         <menus>
           <Menu mnemonicParsing="false" text="Archivo">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" text="Volver al login" onAction="#volver" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Cambiar Pantalla">
             <items>
-              <MenuItem mnemonicParsing="false" text="Ir a Equipos" />
+              <MenuItem mnemonicParsing="false" text="Ir a Equipos" onAction="#cargarGrafico" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
@@ -112,6 +112,8 @@
             <items>
             <FXCollections fx:factory="observableArrayList">
                 <String fx:value="Agente Libre"/>
+                                <String fx:value="Chicago Bulls"/>
+
             </FXCollections>
          </items> 
             </ComboBox>

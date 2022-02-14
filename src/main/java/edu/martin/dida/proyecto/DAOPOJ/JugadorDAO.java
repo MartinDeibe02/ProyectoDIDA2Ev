@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -39,6 +41,31 @@ public class JugadorDAO {
             ex.printStackTrace();
         }     
 }
+    
+    public Map<String, Integer> contarJugadoresEquipos(){
+        List<Jugadores> jugadores = buscar();
+        Map<String, Integer> jugadoresEquipo = new HashMap<>();
+        
+        try(Connection conexion = DriverManager.getConnection(URL_CONEXION, USUARIO, PASSWORD)){
+            Statement stmt = conexion.createStatement();
+            String sql = "SELECT COUNT(*) as cant FROM jugador GROUP BY equipo";
+            ResultSet rs = stmt.executeQuery(sql);
+            
+            while(rs.next()){
+                int cantidadJug = rs.getInt("cant");
+                
+                for(Jugadores jugador : jugadores){
+                        jugadoresEquipo.put(jugador.getEquipo(), cantidadJug);
+                    
+                }
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        return jugadoresEquipo;
+    }
 
 //comprobamos con el id si es guardar o editar
     public void guardarEditar(Jugadores jugador){
