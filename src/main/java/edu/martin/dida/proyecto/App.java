@@ -24,12 +24,11 @@ public class App extends Application {
         
 
         layoutPane.mostrarPantallaActual("a");
+        Scene escena = new Scene(layoutPane);
         
-        Scene escena = new Scene(layoutPane, layoutPane.getPrefHeight(), layoutPane.getPrefWidth());
-
-        primaryStage.sizeToScene();
         primaryStage.setScene(escena);
         
+        primaryStage.getScene().getWindow().sizeToScene();
         primaryStage.show();
         
         

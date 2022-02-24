@@ -18,8 +18,9 @@ public class Jugadores {
     private String dorsal;
     private String fecha;
     private String equipo;
+    private String posicion;
     
-    public Jugadores(int id, String nombre,String pais, int altura, String equipo, String dorsal, String fecha) {
+    public Jugadores(int id, String nombre,String pais, int altura, String equipo, String dorsal, String fecha, String posicion) {
         this.id = id;
         this.nombre = nombre;
         this.altura = altura;
@@ -27,6 +28,7 @@ public class Jugadores {
         this.dorsal= dorsal;
         this.fecha=fecha;
         this.equipo=equipo;
+        this.posicion=posicion;
     }
 
     public Jugadores() {
@@ -87,6 +89,16 @@ public class Jugadores {
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
+
+    public String getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(String posicion) {
+        this.posicion = posicion;
+    }
+    
+    
     
     
    

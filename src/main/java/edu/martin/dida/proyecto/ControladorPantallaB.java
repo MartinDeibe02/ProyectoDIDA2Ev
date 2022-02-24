@@ -45,6 +45,9 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
         ComboBox comboPais;
         
         @FXML
+        ComboBox comboPosicion;
+        
+        @FXML
         DatePicker fecha;
         
         @FXML
@@ -65,6 +68,8 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        
         jugadorDao = new JugadorDAO();
         cargar();      
         cargarGrafico();
@@ -90,6 +95,7 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
     
     public void volver(){
         this.layout.mostrarPantallaActual("a");
+        
     }
     
     public void cargarGrafico(){
@@ -124,6 +130,7 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
       String convertirFecha = date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
       jugador.setFecha(convertirFecha);
       jugador.setDorsal(txtdorsal.getText());
+      jugador.setPosicion(comboPosicion.getSelectionModel().getSelectedItem().toString());
       
       //inserto en bbdd
 
@@ -132,6 +139,7 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
       id = 0;
       
       cargar();
+      cargarGrafico();
       //limpio valores
       txtnombre.clear();
       txtdorsal.clear();
@@ -139,6 +147,7 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
       altura0.setValue(0);
       comboPais.setValue(null);
       comboEquipo.setValue(null);
+      comboPosicion.setValue(null);
     }
        }
        
@@ -150,6 +159,7 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
             }else{
             jugadorDao.eliminar(jugador);
            cargar();
+           cargarGrafico();
     }
            }
            
@@ -173,9 +183,11 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
             
             fecha.setValue(localDate);
             txtdorsal.setText(jugador.getDorsal());
+            comboPosicion.setValue(jugador.getPosicion());
+
             
             //recojo id del registro para comprobar en dao si es nuevo registro o o actualizar
-            id= jugador.getId(); 
+            id= jugador.getId();
             
             }
             }

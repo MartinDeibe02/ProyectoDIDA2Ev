@@ -35,7 +35,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color: transparent, #6699FF, transparent, transparent, white;
 }
 
+.button5 {
+  -fx-background-color: white;
+  -fx-border-color: #98A292;
+  -fx-border-radius: 10px;
+}
 
+.button5:hover {-fx-background-color: #e7e7e7;}
 
 
 

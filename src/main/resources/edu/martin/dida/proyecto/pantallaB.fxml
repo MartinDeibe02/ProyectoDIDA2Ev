@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import java.lang.*?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -16,16 +16,14 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.collections.FXCollections ?>
-
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="1000.0" styleClass="table-view" stylesheets="@../edu.martin.dida.proyecto/estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.martin.dida.proyecto.ControladorPantallaB">
+<BorderPane prefHeight="600.0" prefWidth="600" styleClass="table-view" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.martin.dida.proyecto.ControladorPantallaB">
    <right>
       <StackPane prefHeight="570.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <children>
@@ -38,12 +36,12 @@
         <menus>
           <Menu mnemonicParsing="false" text="Archivo">
             <items>
-              <MenuItem mnemonicParsing="false" text="Volver al login" onAction="#volver" />
+              <MenuItem mnemonicParsing="false" onAction="#volver" text="Volver al login" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Cambiar Pantalla">
             <items>
-              <MenuItem mnemonicParsing="false" text="Ir a Equipos" onAction="#cargarGrafico" />
+              <MenuItem mnemonicParsing="false" onAction="#cargarGrafico" text="Ir a Equipos" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
@@ -72,7 +70,6 @@
             <ColumnConstraints maxWidth="120.0" minWidth="0.0" prefWidth="81.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="50.0" minHeight="22.399987792968773" prefHeight="80.0" />
@@ -80,98 +77,117 @@
             <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
             <RowConstraints maxHeight="50.0" minHeight="22.400048828125023" prefHeight="80.0" />
             <RowConstraints maxHeight="50.0" minHeight="22.400048828125023" prefHeight="80.0" />
+            <RowConstraints maxHeight="50.0" minHeight="22.400048828125023" prefHeight="80.0" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" prefHeight="18.0" prefWidth="510.0" text="JUGADORES" textAlignment="CENTER" GridPane.columnSpan="3">
-               <font>
-                  <Font name="Microsoft YaHei Light" size="26.0" />
-               </font>
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-            </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="125.0" text="Nombre" textAlignment="CENTER" GridPane.rowIndex="1" />
-            <Label alignment="CENTER" prefHeight="18.0" prefWidth="126.0" text="Altura" GridPane.rowIndex="2" />
-            <Label alignment="CENTER" prefHeight="18.0" prefWidth="148.0" text="Pais" GridPane.rowIndex="3" />
-            <TextField id="txtnombre" fx:id="txtnombre" prefHeight="26.0" prefWidth="65.0" promptText="Nombre" styleClass="login_txt" stylesheets="@estilos.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Slider id="altura" fx:id="altura0" max="250.0" min="150.0" prefHeight="24.0" prefWidth="80.0" showTickMarks="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-              <TextField id="cuentaSlider" fx:id="cuentaSlider" prefHeight="26.0" prefWidth="42.0" promptText="CM" styleClass="login_txt" stylesheets="@estilos.css" text="" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <ComboBox id="comboPais" fx:id="comboPais" prefHeight="26.0" prefWidth="242.0" promptText="Pais de origen" styleClass="combo-box" stylesheets="@estilos.css" GridPane.columnIndex="1" GridPane.rowIndex="3" >
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="125.0" text="Nombre" textAlignment="CENTER" />
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="126.0" text="Altura" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="148.0" text="Pais" GridPane.rowIndex="2" />
+            <TextField id="txtnombre" fx:id="txtnombre" prefHeight="26.0" prefWidth="65.0" promptText="Nombre" styleClass="login_txt" stylesheets="@estilos.css" GridPane.columnIndex="1" />
+            <Slider id="altura" fx:id="altura0" max="250.0" min="150.0" prefHeight="24.0" prefWidth="80.0" showTickMarks="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+              <TextField id="cuentaSlider" fx:id="cuentaSlider" prefHeight="26.0" prefWidth="42.0" promptText="CM" styleClass="login_txt" stylesheets="@estilos.css" text="" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <ComboBox id="comboPais" fx:id="comboPais" prefHeight="26.0" prefWidth="242.0" promptText="Pais de origen" styleClass="combo-box" stylesheets="@estilos.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <items>
             <FXCollections fx:factory="observableArrayList">
-                <String fx:value="España"/>
-            </FXCollections>
-         </items> 
-            </ComboBox>
-            <Label alignment="CENTER" prefHeight="18.0" prefWidth="139.0" text="Fecha" GridPane.rowIndex="4" />
-            <DatePicker id="txtfecha" fx:id="fecha" prefHeight="26.0" prefWidth="237.0" promptText="Fecha de nacimiento" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label alignment="CENTER" prefHeight="18.0" prefWidth="121.0" text="Dorsal" GridPane.rowIndex="6" />
-            <TextField fx:id="txtdorsal" promptText="Numero dorsal" styleClass="login_txt" stylesheets="@estilos.css" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="121.0" text="Equipo" textAlignment="CENTER" GridPane.rowIndex="7" />
-            <ComboBox fx:id="comboEquipo" prefHeight="25.0" prefWidth="264.0" promptText="Equipo" stylesheets="@estilos.css" GridPane.columnIndex="1" GridPane.rowIndex="7">
-            <items>
-            <FXCollections fx:factory="observableArrayList">
-                <String fx:value="Agente Libre"/>
-                                <String fx:value="Chicago Bulls"/>
+                <String fx:value="España" />
+                <String fx:value="Estados Unidos" />
+                <String fx:value="Argentina" />
+                <String fx:value="Grecia" />
+                <String fx:value="Australia" />
+                <String fx:value="Alemania" />
+                <String fx:value="Rusia" />
+                <String fx:value="Francia" />
 
             </FXCollections>
          </items> 
+            </ComboBox>
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="139.0" text="Fecha" GridPane.rowIndex="3" />
+            <DatePicker id="txtfecha" fx:id="fecha" prefHeight="26.0" prefWidth="237.0" promptText="Fecha de nacimiento" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="121.0" text="Dorsal" GridPane.rowIndex="5" />
+            <TextField fx:id="txtdorsal" promptText="Numero dorsal" styleClass="login_txt" stylesheets="@estilos.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="121.0" text="Equipo" textAlignment="CENTER" GridPane.rowIndex="6" />
+            <ComboBox fx:id="comboEquipo" prefHeight="25.0" prefWidth="264.0" promptText="Equipo" stylesheets="@estilos.css" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Agente Libre" />
+                <String fx:value="Chicago Bulls" />
+
+            </FXCollections>
+         </items> 
+            </ComboBox>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="153.0" text="Posición" GridPane.rowIndex="7" />
+            <ComboBox fx:id="comboPosicion" prefHeight="26.0" prefWidth="264.0" GridPane.columnIndex="1" GridPane.rowIndex="7" >
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Base" />
+                    <String fx:value="Escolta" />
+                    <String fx:value="Pivot" />
+                    <String fx:value="Ala-pivot" />
+                    <String fx:value="Alero" />
+                </FXCollections>
+            </items>
             </ComboBox>
 
          </children>
          <padding>
-            <Insets right="10.0" />
+            <Insets right="10.0" top="10.0" />
          </padding>
       </GridPane>
    </center>
    <bottom>
-      <TableView fx:id="tablabd" prefHeight="253.0" prefWidth="998.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tablabd" prefHeight="231.0" prefWidth="998.0" BorderPane.alignment="CENTER">
         <columns>
                    
                    <TableColumn text="Nombre">
                        <cellValueFactory>
-                           <PropertyValueFactory property="nombre"/>
+                           <PropertyValueFactory property="nombre" />
                        </cellValueFactory>
                    </TableColumn>
                    
                     <TableColumn text="Altura">
                        <cellValueFactory>
-                           <PropertyValueFactory property="altura"/>
+                           <PropertyValueFactory property="altura" />
                        </cellValueFactory>
                    </TableColumn>
                    
                     <TableColumn text="Pais">
                        <cellValueFactory>
-                           <PropertyValueFactory property="pais"/>
+                           <PropertyValueFactory property="pais" />
                        </cellValueFactory>
                    </TableColumn>
                    
                    <TableColumn text="FechaNac">
                        <cellValueFactory>
-                           <PropertyValueFactory property="fecha"/>
+                           <PropertyValueFactory property="fecha" />
                        </cellValueFactory>
                    </TableColumn>
                    
                     <TableColumn text="Equipo">
                        <cellValueFactory>
-                           <PropertyValueFactory property="equipo"/>
+                           <PropertyValueFactory property="equipo" />
                        </cellValueFactory>
                    </TableColumn>
                    
                     <TableColumn text="Dorsal">
                        <cellValueFactory>
-                           <PropertyValueFactory property="dorsal"/>
+                           <PropertyValueFactory property="dorsal" />
+                       </cellValueFactory>
+                   </TableColumn>
+                   
+                   <TableColumn text="Posicion">
+                       <cellValueFactory>
+                           <PropertyValueFactory property="posicion" />
                        </cellValueFactory>
                    </TableColumn>
                </columns>
       </TableView>
    </bottom>
    <left>
-      <ToolBar orientation="VERTICAL" prefHeight="319.0" prefWidth="66.0" BorderPane.alignment="CENTER">
+      <ToolBar orientation="VERTICAL" prefHeight="319.0" prefWidth="79.0" style="-fx-background-color: #F2F2F2;" BorderPane.alignment="CENTER">
         <items>
-          <Button fx:id="btnInsert" mnemonicParsing="false" prefHeight="99.0" prefWidth="60.0" text="Insertar" onAction="#guardar" />
-            <Button fx:id="btnEdit" mnemonicParsing="false" prefHeight="99.0" prefWidth="60.0" text="Editar" onAction="#editar" />
-            <Button fx:id="btnDelete" mnemonicParsing="false" prefHeight="99.0" prefWidth="60.0" text="Eliminar" onAction="#eliminar" />
+          <Button fx:id="btnInsert" mnemonicParsing="false" onAction="#guardar" prefHeight="99.0" prefWidth="65.0" styleClass="button5" stylesheets="@estilos.css" text="Insertar" />
+            <Button fx:id="btnEdit" mnemonicParsing="false" onAction="#editar" prefHeight="99.0" prefWidth="65.0" styleClass="button5" stylesheets="@estilos.css" text="Editar" />
+            <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#eliminar" prefHeight="100.0" prefWidth="65.0" styleClass="button5" stylesheets="@estilos.css" text="Eliminar" />
         </items>
       </ToolBar>
    </left>

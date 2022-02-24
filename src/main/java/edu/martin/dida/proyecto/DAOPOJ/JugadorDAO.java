@@ -28,14 +28,15 @@ public class JugadorDAO {
     private void crearTabla() {
         try (Connection conexion = DriverManager.getConnection(URL_CONEXION, USUARIO, PASSWORD)){
             Statement statement = conexion.createStatement();
-             String sql = "CREATE TABLE IF NOT EXISTS jugador" 
+             String sql = "CREATE TABLE IF NOT EXISTS jugadores" 
                     + "(id INTEGER auto_increment, " 
                     + "nombre VARCHAR(255), "   
                     + "altura INTEGER(50), "
                     + "pais VARCHAR(50),"
                     + "fecha Varchar(50), "
                     + "dorsal VARCHAR(255),"
-                    + "equipo VARCHAR(50));";
+                    + "equipo VARCHAR(50),"
+                    + "posicion VARCHAR(50));";
              statement.executeUpdate(sql);
     }   catch (SQLException ex) {
             ex.printStackTrace();
@@ -48,15 +49,17 @@ public class JugadorDAO {
         
         try(Connection conexion = DriverManager.getConnection(URL_CONEXION, USUARIO, PASSWORD)){
             Statement stmt = conexion.createStatement();
-            String sql = "SELECT COUNT(*) as cant FROM jugador GROUP BY equipo";
+            String sql = "SELECT equipo, COUNT(*) as cant FROM jugadores GROUP BY equipo";
             ResultSet rs = stmt.executeQuery(sql);
             
             while(rs.next()){
+                String equipo = rs.getString("equipo");
                 int cantidadJug = rs.getInt("cant");
                 
                 for(Jugadores jugador : jugadores){
+                    if(equipo == jugador.getEquipo()){
                         jugadoresEquipo.put(jugador.getEquipo(), cantidadJug);
-                    
+                    }
                 }
             }
             
@@ -80,14 +83,16 @@ public class JugadorDAO {
     private void insertar(Jugadores jugador) {
         try (Connection conexion = DriverManager.getConnection(URL_CONEXION, USUARIO, PASSWORD)){
             Statement statement = conexion.createStatement();
-            String sql = "INSERT INTO jugador (nombre, altura, pais,equipo, fecha, dorsal)" 
+            String sql = "INSERT INTO jugadores (nombre, altura, pais,equipo, fecha, dorsal, posicion)" 
                     +"VALUES ('"+ jugador.getNombre() 
                      +"','"+ jugador.getAltura()
                      +"','"+ jugador.getPais()
                      +"','"+ jugador.getEquipo()
                      +"','"+ jugador.getFecha()
-                     +"','"+ jugador.getDorsal()+"')";
-            statement.executeUpdate(sql);
+                     +"','"+ jugador.getDorsal()
+                     +"','"+ jugador.getPosicion()+"')";
+
+                    statement.executeUpdate(sql);
 
     }   catch (Exception e) {
            throw new RuntimeException("Error al guardar informacion: " + e.getMessage());
@@ -100,7 +105,7 @@ public class JugadorDAO {
         List<Jugadores> jugadores = new ArrayList<>();
            try(Connection conexion = DriverManager.getConnection(URL_CONEXION, USUARIO, PASSWORD)){
             Statement statement = conexion.createStatement();
-            String sql = "SELECT * FROM jugador";
+            String sql = "SELECT * FROM jugadores";
             ResultSet resultSet =  statement.executeQuery(sql);
              while(resultSet.next()){
                  Jugadores jug = new Jugadores();
@@ -111,6 +116,7 @@ public class JugadorDAO {
                  jug.setEquipo(resultSet.getString("equipo"));
                  jug.setFecha(resultSet.getString("fecha"));
                  jug.setDorsal(resultSet.getString("dorsal"));
+                 jug.setPosicion(resultSet.getString("posicion"));
                  jugadores.add(jug);
 }
     }   catch (SQLException e) {
@@ -123,12 +129,13 @@ public class JugadorDAO {
     private void editar(Jugadores jugador) {
         try(Connection conexion = DriverManager.getConnection(URL_CONEXION, USUARIO, PASSWORD)){
             Statement statement = conexion.createStatement();
-            String sql = "UPDATE jugador SET nombre = '" + jugador.getNombre()
+            String sql = "UPDATE jugadores SET nombre = '" + jugador.getNombre()
                     + "',altura = '" + jugador.getAltura()
                     + "',pais = '" + jugador.getPais()
                     + "',equipo = '" + jugador.getEquipo()
                     + "',fecha = '" + jugador.getFecha()
                     + "',dorsal ='" + jugador.getDorsal()
+                    + "',posicion ='" + jugador.getPosicion()
                     + "' WHERE id= " + jugador.getId();
             statement.executeUpdate(sql);
         }catch(SQLException e){
@@ -140,7 +147,7 @@ public class JugadorDAO {
     public void eliminar(Jugadores jugador){
          try(Connection conexion = DriverManager.getConnection(URL_CONEXION, USUARIO, PASSWORD)){
             Statement statement = conexion.createStatement();
-            String sql = "DELETE FROM jugador WHERE id=" + jugador.getId();
+            String sql = "DELETE FROM jugadores WHERE id=" + jugador.getId();
             statement.executeUpdate(sql);
         }catch(SQLException e){
             e.printStackTrace();
