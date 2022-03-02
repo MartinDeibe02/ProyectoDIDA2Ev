@@ -7,8 +7,16 @@ package edu.martin.dida.proyecto;
 import edu.martin.dida.proyecto.DAOPOJ.JugadorDAO;
 import edu.martin.dida.proyecto.DAOPOJ.Jugadores;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -16,6 +24,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
@@ -65,6 +74,9 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
         
         JugadorDAO jugadorDao;
         
+        static ObservableList<String> items = FXCollections.observableArrayList();
+
+        
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -74,11 +86,12 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
         cargar();      
         cargarGrafico();
         
+        comboEquipo.setItems(cargarEquipos());
+
         altura0.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observar, Number numeroAnterior, Number numeroNuevo) {
                 cuentaSlider.setText(String.valueOf((int)Math.round((double) numeroNuevo)));
-                
             }
         });
         
@@ -91,8 +104,10 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
             
         });    
         
+ 
     }
     
+ 
     public void volver(){
         this.layout.mostrarPantallaActual("a");
         
@@ -110,6 +125,10 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
         pie.setData(datos);
     }
     
+    public void irEquipos(){
+            this.layout.mostrarPantallaActual("c");
+    }
+    
        public void guardar(){
       Jugadores jugador=new Jugadores();
       
@@ -122,7 +141,13 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
       jugador.setId(id);
       jugador.setNombre(txtnombre.getText());
       jugador.setPais(comboPais.getSelectionModel().getSelectedItem().toString());
-      jugador.setEquipo(comboEquipo.getSelectionModel().getSelectedItem().toString());
+      
+      if(comboEquipo.getSelectionModel().getSelectedItem() == null){
+          jugador.setEquipo("Agente Libre");
+      }else{
+        jugador.setEquipo(comboEquipo.getSelectionModel().getSelectedItem().toString());
+      
+      }
       jugador.setAltura((int) Math.round(altura0.getValue()));
       
       //Convierto LocalDate en String para cambiar el formato de la fecha
@@ -198,4 +223,25 @@ public class ControladorPantallaB extends ControladorConNavegabilidad implements
         jugadores.addAll(jugadoresE);
         tablabd.setItems(jugadores);        
     }
+
+    public ObservableList<String> cargarEquipos() {
+         try(Connection conexion = DriverManager.getConnection("jdbc:h2:./jugadoresDB", "root", "")){
+         String sql = "SELECT DISTINCT nombre FROM equipos";
+             PreparedStatement stmt = conexion.prepareStatement(sql);
+             items.removeAll(items);
+             ResultSet rs = stmt.executeQuery();
+             while(rs.next()){
+                 items.add(rs.getString("nombre"));
+             }
+             items.add("Agente Libre");
+            return items;
+
+         }catch(SQLException e){
+             e.printStackTrace();
+             return null;
+         }
+
+    }
+
+
 }

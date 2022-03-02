@@ -21,7 +21,8 @@ public class App extends Application {
         LayoutPane layoutPane = new LayoutPane();
         layoutPane.cargarPantallas("a", ControladorPantallaA.class.getResource("pantallaA.fxml"));
         layoutPane.cargarPantallas("b", ControladorPantallaB.class.getResource("pantallaB.fxml"));
-        
+        layoutPane.cargarPantallas("c", ControladorEquipos.class.getResource("ventanaEquipos.fxml"));
+
 
         layoutPane.mostrarPantallaActual("a");
         Scene escena = new Scene(layoutPane);

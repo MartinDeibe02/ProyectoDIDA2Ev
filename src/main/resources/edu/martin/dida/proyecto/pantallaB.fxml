@@ -23,36 +23,28 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 
-<BorderPane prefHeight="600.0" prefWidth="600" styleClass="table-view" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.martin.dida.proyecto.ControladorPantallaB">
+<BorderPane prefHeight="600.0" prefWidth="1000.0" styleClass="table-view" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.martin.dida.proyecto.ControladorPantallaB">
    <right>
-      <StackPane prefHeight="570.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+      <StackPane prefHeight="349.0" prefWidth="434.0" BorderPane.alignment="CENTER">
          <children>
             <PieChart fx:id="pie" legendSide="LEFT" title="Jugadores-Equipos" />
          </children>
       </StackPane>
    </right>
    <top>
-      <MenuBar style="-fx-background-color: #F2F2F2;" styleClass="combo-box" stylesheets="@estilos.css" BorderPane.alignment="CENTER">
+      <MenuBar style="-fx-background-color: #F2F2F2;" styleClass="bar" stylesheets="@estilos.css" BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="Archivo">
+          <Menu mnemonicParsing="false" text="Login">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#volver" text="Volver al login" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Cambiar Pantalla">
+          <Menu mnemonicParsing="false" text="Equipos">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#cargarGrafico" text="Ir a Equipos" />
+              <MenuItem mnemonicParsing="false" onAction="#irEquipos" text="Ir a Equipos" />
             </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
+          </Menu>         
         </menus>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
       </MenuBar>
    </top>
    
@@ -63,7 +55,7 @@
       
    </left>
    <center>
-      <GridPane hgap="10.0" prefHeight="319.0" prefWidth="398.0" style="-fx-background-color: #F2F2F2;" BorderPane.alignment="CENTER">
+      <GridPane hgap="10.0" style="-fx-background-color: #F2F2F2;" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="50.40001220703125" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.2" minWidth="10.0" prefWidth="234.2" />
@@ -85,7 +77,7 @@
             <Label alignment="CENTER" prefHeight="18.0" prefWidth="148.0" text="Pais" GridPane.rowIndex="2" />
             <TextField id="txtnombre" fx:id="txtnombre" prefHeight="26.0" prefWidth="65.0" promptText="Nombre" styleClass="login_txt" stylesheets="@estilos.css" GridPane.columnIndex="1" />
             <Slider id="altura" fx:id="altura0" max="250.0" min="150.0" prefHeight="24.0" prefWidth="80.0" showTickMarks="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-              <TextField id="cuentaSlider" fx:id="cuentaSlider" prefHeight="26.0" prefWidth="42.0" promptText="CM" styleClass="login_txt" stylesheets="@estilos.css" text="" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+              <TextField id="cuentaSlider" fx:id="cuentaSlider" prefHeight="26.0" prefWidth="56.0" promptText="CM" styleClass="login_txt" stylesheets="@estilos.css" text="" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <ComboBox id="comboPais" fx:id="comboPais" prefHeight="26.0" prefWidth="242.0" promptText="Pais de origen" styleClass="combo-box" stylesheets="@estilos.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
             <items>
             <FXCollections fx:factory="observableArrayList">
@@ -107,16 +99,16 @@
             <TextField fx:id="txtdorsal" promptText="Numero dorsal" styleClass="login_txt" stylesheets="@estilos.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="121.0" text="Equipo" textAlignment="CENTER" GridPane.rowIndex="6" />
             <ComboBox fx:id="comboEquipo" prefHeight="25.0" prefWidth="264.0" promptText="Equipo" stylesheets="@estilos.css" GridPane.columnIndex="1" GridPane.rowIndex="6">
-            <items>
-            <FXCollections fx:factory="observableArrayList">
-                <String fx:value="Agente Libre" />
-                <String fx:value="Chicago Bulls" />
-
-            </FXCollections>
-         </items> 
+               <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Agente Libre" />
+                </FXCollections>
+            </items>
+            
+            
             </ComboBox>
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="153.0" text="Posición" GridPane.rowIndex="7" />
-            <ComboBox fx:id="comboPosicion" prefHeight="26.0" prefWidth="264.0" GridPane.columnIndex="1" GridPane.rowIndex="7" >
+            <ComboBox fx:id="comboPosicion" prefHeight="26.0" prefWidth="264.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Base" />
@@ -135,7 +127,7 @@
       </GridPane>
    </center>
    <bottom>
-      <TableView fx:id="tablabd" prefHeight="231.0" prefWidth="998.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tablabd" prefHeight="223.0" prefWidth="998.0" BorderPane.alignment="CENTER">
         <columns>
                    
                    <TableColumn text="Nombre">
@@ -183,11 +175,11 @@
       </TableView>
    </bottom>
    <left>
-      <ToolBar orientation="VERTICAL" prefHeight="319.0" prefWidth="79.0" style="-fx-background-color: #F2F2F2;" BorderPane.alignment="CENTER">
+      <ToolBar orientation="VERTICAL" prefHeight="200.0" prefWidth="79.0" style="-fx-background-color: #F2F2F2;" BorderPane.alignment="CENTER">
         <items>
-          <Button fx:id="btnInsert" mnemonicParsing="false" onAction="#guardar" prefHeight="99.0" prefWidth="65.0" styleClass="button5" stylesheets="@estilos.css" text="Insertar" />
-            <Button fx:id="btnEdit" mnemonicParsing="false" onAction="#editar" prefHeight="99.0" prefWidth="65.0" styleClass="button5" stylesheets="@estilos.css" text="Editar" />
-            <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#eliminar" prefHeight="100.0" prefWidth="65.0" styleClass="button5" stylesheets="@estilos.css" text="Eliminar" />
+          <Button fx:id="btnInsert" mnemonicParsing="false" onAction="#guardar" prefHeight="50.0" prefWidth="65.0" styleClass="button5" stylesheets="@estilos.css" text="Insertar" />
+            <Button fx:id="btnEdit" mnemonicParsing="false" onAction="#editar" prefHeight="50.0" prefWidth="65.0" styleClass="button5" stylesheets="@estilos.css" text="Editar" />
+            <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#eliminar" prefHeight="50.0" prefWidth="65.0" styleClass="button5" stylesheets="@estilos.css" text="Eliminar" />
         </items>
       </ToolBar>
    </left>

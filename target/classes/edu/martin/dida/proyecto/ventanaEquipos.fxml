@@ -1,81 +1,162 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.martin.dida.proyecto.ControladorEquipos">
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
+      <MenuBar styleClass="bar" stylesheets="@estilos.css" BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Volver">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" onAction="#volver" text="Volver a jugadores" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
    </top>
-   <right>
-      <TableView prefHeight="375.0" prefWidth="301.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
-   </right>
-   <center>
-      <GridPane prefHeight="375.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+   <left>
+      <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="10.0" prefWidth="141.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="20.0" prefWidth="150.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="150.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="150.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="120.0" minHeight="0.0" prefHeight="81.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="250.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="293.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="293.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="293.0" minHeight="10.0" prefHeight="108.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="69.79998779296875" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="205.0" text="Nombre" textAlignment="CENTER" />
-            <TextField GridPane.columnIndex="1" />
-            <Spinner GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="253.0" text="Presupuesto" GridPane.rowIndex="1" />
-            <CheckBox alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="17.0" prefWidth="195.0" text="Mascota" textAlignment="CENTER" GridPane.rowIndex="2">
+            <TextField fx:id="txtEquipo" prefHeight="26.0" prefWidth="185.0" promptText="Nombre del equipo" styleClass="login_txt" stylesheets="@estilos.css" GridPane.columnIndex="1" GridPane.columnSpan="2">
                <GridPane.margin>
-                  <Insets right="30.0" />
+                  <Insets right="10.0" />
+               </GridPane.margin></TextField>
+            <TextField fx:id="txtPresu" editable="true" prefHeight="26.0" prefWidth="366.0" styleClass="login_txt" stylesheets="@estilos.css" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="txtPet" promptText="Nombre de la mascota" styleClass="login_txt" stylesheets="@estilos.css" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin></TextField>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="253.0" text="Valor equipo" GridPane.rowIndex="1" />
+            <CheckBox fx:id="checkPet" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="31.0" prefWidth="168.0" text="Mascota" textAlignment="CENTER" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets right="10.0" />
                </GridPane.margin>
             </CheckBox>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="214.0" text="Propietario" GridPane.rowIndex="3" />
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="323.0" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtOwn" promptText="Nombre del propietario" styleClass="login_txt" stylesheets="@estilos.css" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin></TextField>
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="263.0" text="Ciudad" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="txtCity" promptText="CIdudad del equipo" styleClass="login_txt" stylesheets="@estilos.css" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin></TextField>
+            <Button mnemonicParsing="false" onAction="#guardar" prefHeight="50.0" prefWidth="150.0" styleClass="button5" stylesheets="@estilos.css" text="Insertar" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#editar" prefHeight="50.0" prefWidth="150.0" styleClass="button5" stylesheets="@estilos.css" text="Editar" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#eliminar" prefHeight="50.0" prefWidth="150.0" styleClass="button5" stylesheets="@estilos.css" text="Eliminar" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </Button>
          </children>
       </GridPane>
-   </center>
+   </left>
+   <right>
+      <GridPane prefHeight="574.0" prefWidth="565.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="316.79998779296875" minWidth="10.0" prefWidth="283.20001220703125" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="288.20001220703125" minWidth="10.0" prefWidth="257.79998779296875" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+             
+             
+             
+            <TableView fx:id="tablaEq" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
+              <columns>
+                <TableColumn text="Nombre">
+                       <cellValueFactory>
+                           <PropertyValueFactory property="nombre" />
+                       </cellValueFactory>
+                   </TableColumn>
+                   
+                    <TableColumn text="Valor">
+                       <cellValueFactory>
+                           <PropertyValueFactory property="presupuesto" />
+                       </cellValueFactory>
+                   </TableColumn>
+                   
+                    <TableColumn text="Mascota">
+                       <cellValueFactory>
+                           <PropertyValueFactory property="mascota" />
+                       </cellValueFactory>
+                   </TableColumn>
+                   
+                   <TableColumn text="Propietario">
+                       <cellValueFactory>
+                           <PropertyValueFactory property="propietario" />
+                       </cellValueFactory>
+                   </TableColumn>
+                   
+                    <TableColumn text="Ciudad">
+                       <cellValueFactory>
+                           <PropertyValueFactory property="ciudad" />
+                       </cellValueFactory>
+                   </TableColumn>
+                   
+              </columns>
+            </TableView>
+            <TextField fx:id="txtFiltrar" prefHeight="26.0" prefWidth="302.0" promptText="Nombre del equipo" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="326.0" text="Filtrar Equipos">
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+   </right>
 </BorderPane>

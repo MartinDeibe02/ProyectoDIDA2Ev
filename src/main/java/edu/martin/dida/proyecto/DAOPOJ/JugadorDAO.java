@@ -57,9 +57,8 @@ public class JugadorDAO {
                 int cantidadJug = rs.getInt("cant");
                 
                 for(Jugadores jugador : jugadores){
-                    if(equipo == jugador.getEquipo()){
                         jugadoresEquipo.put(jugador.getEquipo(), cantidadJug);
-                    }
+                    
                 }
             }
             
@@ -153,5 +152,6 @@ public class JugadorDAO {
             e.printStackTrace();
         }
     }
+
 
 }
